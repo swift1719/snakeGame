@@ -16,7 +16,7 @@ class SinglyLinkedList{
     }
 }
 
-const BOARD_SIZE=10;
+const BOARD_SIZE=20;
 const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
 
 const Board=()=>{
@@ -187,7 +187,9 @@ const Board=()=>{
     }
     
     return(
-        <div className="board">
+        <>
+            <h1>Score: {score}</h1>
+            <div className="board">
             {board.map((row,rowInd)=>(
                 <div key={rowInd} className="row">
                 {
@@ -206,7 +208,8 @@ const Board=()=>{
                 }
                 </div>
             ))}
-        </div>
+            </div>
+        </>
     )
 }
 

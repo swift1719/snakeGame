@@ -3,11 +3,11 @@
 }
 
 .row{
-    height: 35px;
+    height: 40px;
 }
 .cell{
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     outline: 1px solid rgb(134,154,189);
     display:inline-block;
 }
