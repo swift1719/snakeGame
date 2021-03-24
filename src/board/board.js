@@ -21,6 +21,7 @@ const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
 
 const Board=()=>{
 
+    // eslint-disable-next-line no-unused-vars
     const [board, setBoard] = useState(createBoard(BOARD_SIZE));
     
     //starting point of snake
@@ -55,6 +56,7 @@ const Board=()=>{
         window.addEventListener('keydown',e=>{
             handleKeydown(e);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     useInterval(()=>{
@@ -342,15 +344,15 @@ const getNextHeadCoordinates=(currentHeadCoordinates,direction)=>{
 }
 const getGrowthNodeCoords=(snakeTail,currentDirection)=>{
     const tailNextNodeDirection=getNextNodeDirection(snakeTail,currentDirection);
-    console.log(tailNextNodeDirection);
+    // console.log(tailNextNodeDirection);
     const growthDirection=getOppostiteDirection(tailNextNodeDirection);
     const currentTailCoords={
         row:snakeTail.value.row,
         col:snakeTail.value.col,
     }
-    console.log(growthDirection);
+    // console.log(growthDirection);
     const growthNodeCoords=getCoordinatesInDirection(currentTailCoords,growthDirection);
-    console.log(growthNodeCoords);
+    // console.log(growthNodeCoords);
     return growthNodeCoords;
 }   
 const getOppostiteDirection= direction=>{
