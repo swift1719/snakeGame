@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import randomIntFromInterval from '../lib/utils';
+import {useInterval,randomIntFromInterval,reverseLinkedList} from '../utils';
 import './board.css';
 
 class LinkedListNode{
@@ -382,6 +382,5 @@ const getCellClassName=(cellValue,foodCell,foodShouldReverseDirection,snakeCells
     }
     return className;
 }
-
 
 export default Board;
