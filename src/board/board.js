@@ -16,7 +16,7 @@ class SinglyLinkedList{
     }
 }
 
-const BOARD_SIZE=20;
+const BOARD_SIZE=13;
 const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
 
 const Board=()=>{
