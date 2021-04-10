@@ -1,20 +1,17 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {useInterval,randomIntFromInterval,reverseLinkedList} from '../utils';
+import {createBoard,isOutOfBounds,getCellClassName} from '../utils/boardUtil';
+import {SinglyLinkedList,LinkedListNode,reverseLinkedList} from '../utils/singlyLL';
+import {getStartingSnakeCell,randomIntFromInterval} from '../utils/snakeUtil';
+import {
+    Direction,
+    getDirectionFromKey,
+    getOppostiteDirection,
+    getGrowthNodeCoords,
+    getNextCoordInDirection,
+    getNextNodeDirection
+} from '../utils/coordUtil';
+import {useInterval} from '../utils/intervalUtil';
 import './board.css';
-
-class LinkedListNode{
-    constructor(value){
-        this.value=value;//value :{row: , col: ,cell: }
-        this.next=null;
-    }
-}
-class SinglyLinkedList{
-    constructor(value){
-        const node=new LinkedListNode(value);
-        this.head=node;
-        this.tail=node;
-    }
-}
 
 const BOARD_SIZE=13;
 const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
@@ -26,7 +23,7 @@ const Board=()=>{
     
     //starting point of snake
     const [snake, setSnake] = useState(
-        new SinglyLinkedList(getStartingSnakeLLValue(board))
+        new SinglyLinkedList(getStartingSnakeCell(board))
     );
     const [snakeCells, setSnakeCells] = useState(
         new Set([snake.head.value.cell])
@@ -83,7 +80,7 @@ const Board=()=>{
             col:snake.head.value.col,
         };
 
-        const nextHeadCoordinates=getNextHeadCoordinates(currentHeadCoordinates,direction);
+        const nextHeadCoordinates=getNextCoordInDirection(currentHeadCoordinates,direction);
   
         if(isOutOfBounds(nextHeadCoordinates,board)){
             handleGameOver();
@@ -185,7 +182,7 @@ const Board=()=>{
 
     const handleGameOver=()=>{
         setScore(0);
-        const snakeLLStartingValue=getStartingSnakeLLValue(board);
+        const snakeLLStartingValue=getStartingSnakeCell(board);
         setSnake(new SinglyLinkedList(snakeLLStartingValue));
         setFoodCell(snakeLLStartingValue.cell+5);
         setSnakeCells(new Set([snakeLLStartingValue.cell]));
@@ -218,185 +215,4 @@ const Board=()=>{
         </>
     )
 }
-
-const createBoard = BOARD_SIZE => {
-    let counter=1;
-    const board=[];
-
-    for(let row=0;row<BOARD_SIZE;row++){
-        const currentRow=[];
-        for(let col=0;col<BOARD_SIZE;col++){
-            currentRow.push(counter++);
-        }//every cell of board has a unique counter
-        board.push(currentRow);
-    }
-    return board;
-}
-
-const getCoordinatesInDirection=(coordinates,direction)=>{
-    switch (direction) {
-        case Direction.UP:
-            return{
-                row:coordinates.row-1,
-                col:coordinates.col
-            };
-            
-        case Direction.RIGHT:
-            return{
-                row:coordinates.row,
-                col:coordinates.col+1
-            };
-            
-        case Direction.DOWN:
-            return{
-                row:coordinates.row+1,
-                col:coordinates.col
-            };
-            
-        case Direction.LEFT:
-            return{
-                row:coordinates.row,
-                col:coordinates.col-1
-            };
-        default:
-            break;
-    }
-}
-
-const getStartingSnakeLLValue=board=>{
-    const rowSize = board.length;
-    const colSize = board[0].length;
-    const startingRow=Math.round(rowSize/3);
-    const startingCol=Math.round(colSize/3);
-    const startingCell=board[startingRow][startingCol];
-    return{
-        row:startingRow,
-        col:startingCol,
-        cell:startingCell
-    }
-}
-
-const isOutOfBounds=(coordinates,board)=>{
-    const {row,col}=coordinates;
-    if(row<0 || col<0)return true;
-    if(row>=board.length || col>=board[0].length)return true;
-    return false;
-}
-const getDirectionFromKey = key=>{
-    switch (key) {
-        case 'ArrowUp':
-            return Direction.UP;
-        case 'ArrowRight':
-            return Direction.RIGHT;
-        case 'ArrowDown':
-            return Direction.DOWN;
-        case 'ArrowLeft':
-            return Direction.LEFT;
-        default:
-            return '';
-    }
-}
-//hashtable to return direction
-const Direction={
-    UP:'UP',
-    RIGHT:'RIGHT',
-    DOWN:'DOWN',
-    LEFT:'LEFT',
-};
-
-const getNextNodeDirection=(node,currentDirection)=>{
-    if(node.next===null)return currentDirection;
-    //since node value is an object with 3 values(row,col,cell)
-    //thereby destructuring it to obtain row and col
-    const {row:currentRow,col:currentCol}=node.value;
-    const {row:nextRow,col:nextCol}=node.next.value;
-    if(nextRow===currentRow && nextCol===currentCol+1){
-        return Direction.RIGHT;
-    }
-    if(nextRow===currentRow && nextCol===currentCol-1){
-        return Direction.LEFT;
-    }
-    if(nextCol===currentCol && nextRow===currentRow+1){
-        return Direction.DOWN;
-    }
-    if(nextCol===currentCol && nextRow===currentRow-1){
-        return Direction.UP;
-    }
-    return '';
-}
-const getNextHeadCoordinates=(currentHeadCoordinates,direction)=>{
-    switch (direction) {
-        case Direction.UP:
-            return{
-                row:currentHeadCoordinates.row-1,
-                col:currentHeadCoordinates.col
-            };
-            
-        case Direction.RIGHT:
-            return{
-                row:currentHeadCoordinates.row,
-                col:currentHeadCoordinates.col+1
-            };
-            
-        case Direction.DOWN:
-            return{
-                row:currentHeadCoordinates.row+1,
-                col:currentHeadCoordinates.col
-            };
-            
-        case Direction.LEFT:
-            return{
-                row:currentHeadCoordinates.row,
-                col:currentHeadCoordinates.col-1
-            };
-        default:
-            break;
-    }
-}
-const getGrowthNodeCoords=(snakeTail,currentDirection)=>{
-    //to obtain the current direction of movement of snake's tail based on it's neighbour node
-    //as there might be a case when snake's head is moving towards left and ate food but 
-    //snake's tail is moving from right to left
-    const tailNextNodeDirection=getNextNodeDirection(snakeTail,currentDirection);
-    // console.log(tailNextNodeDirection);
-    const growthDirection=getOppostiteDirection(tailNextNodeDirection);
-    const currentTailCoords={
-        row:snakeTail.value.row,
-        col:snakeTail.value.col,
-    }
-    // console.log(growthDirection);
-    const growthNodeCoords=getCoordinatesInDirection(currentTailCoords,growthDirection);
-    // console.log(growthNodeCoords);
-    return growthNodeCoords;
-}   
-const getOppostiteDirection= direction=>{
-    switch (direction) {
-        case Direction.UP:
-            return Direction.DOWN;
-        case Direction.RIGHT:
-            return Direction.LEFT;
-        case Direction.DOWN:
-            return Direction.UP;
-        case Direction.LEFT:
-            return Direction.RIGHT;
-        default:
-            break;
-    }
-}
-
-const getCellClassName=(cellValue,foodCell,foodShouldReverseDirection,snakeCells)=>{
-    let className='cell';
-    if(cellValue===foodCell){
-        if(foodShouldReverseDirection){
-            className ='cell cell-purple';
-        }else{
-            className='cell cell-red';
-        }
-    }
-    if(snakeCells.has(cellValue)){
-        className='cell cell-green';
-    }
-    return className;
-}
-
 export default Board;
