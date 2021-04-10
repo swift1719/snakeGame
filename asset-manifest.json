@@ -1,20 +1,24 @@
 {
   "files": {
-    "main.css": "/snakeGame/static/css/main.dcc8e039.chunk.css",
-    "main.js": "/snakeGame/static/js/main.6c431d7d.chunk.js",
-    "main.js.map": "/snakeGame/static/js/main.6c431d7d.chunk.js.map",
+    "main.css": "/snakeGame/static/css/main.3ad350b3.chunk.css",
+    "main.js": "/snakeGame/static/js/main.cd5244c8.chunk.js",
+    "main.js.map": "/snakeGame/static/js/main.cd5244c8.chunk.js.map",
     "runtime-main.js": "/snakeGame/static/js/runtime-main.97f03382.js",
     "runtime-main.js.map": "/snakeGame/static/js/runtime-main.97f03382.js.map",
-    "static/js/2.1f06a62f.chunk.js": "/snakeGame/static/js/2.1f06a62f.chunk.js",
-    "static/js/2.1f06a62f.chunk.js.map": "/snakeGame/static/js/2.1f06a62f.chunk.js.map",
+    "static/js/2.e2a0d276.chunk.js": "/snakeGame/static/js/2.e2a0d276.chunk.js",
+    "static/js/2.e2a0d276.chunk.js.map": "/snakeGame/static/js/2.e2a0d276.chunk.js.map",
     "index.html": "/snakeGame/index.html",
-    "static/css/main.dcc8e039.chunk.css.map": "/snakeGame/static/css/main.dcc8e039.chunk.css.map",
-    "static/js/2.1f06a62f.chunk.js.LICENSE.txt": "/snakeGame/static/js/2.1f06a62f.chunk.js.LICENSE.txt"
+    "static/css/main.3ad350b3.chunk.css.map": "/snakeGame/static/css/main.3ad350b3.chunk.css.map",
+    "static/js/2.e2a0d276.chunk.js.LICENSE.txt": "/snakeGame/static/js/2.e2a0d276.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/snakeGame/static/media/background.9b2b7bbc.jpg",
+    "static/media/borderGolden.17527f81.png": "/snakeGame/static/media/borderGolden.17527f81.png",
+    "static/media/borderLeaves.3ed63a73.png": "/snakeGame/static/media/borderLeaves.3ed63a73.png",
+    "static/media/snake.390985a6.png": "/snakeGame/static/media/snake.390985a6.png"
   },
   "entrypoints": [
     "static/js/runtime-main.97f03382.js",
-    "static/js/2.1f06a62f.chunk.js",
-    "static/css/main.dcc8e039.chunk.css",
-    "static/js/main.6c431d7d.chunk.js"
+    "static/js/2.e2a0d276.chunk.js",
+    "static/css/main.3ad350b3.chunk.css",
+    "static/js/main.cd5244c8.chunk.js"
   ]
 }
