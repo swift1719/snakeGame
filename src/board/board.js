@@ -4,7 +4,7 @@ import './board.css';
 
 class LinkedListNode{
     constructor(value){
-        this.value=value;
+        this.value=value;//value :{row: , col: ,cell: }
         this.next=null;
     }
 }
@@ -31,6 +31,10 @@ const Board=()=>{
     const [snakeCells, setSnakeCells] = useState(
         new Set([snake.head.value.cell])
     )
+    //useRef can be used keep track of variables without causing re-render of the component
+    //Refs in React are used to store a reference to a React element and their values are persisted across re-render.
+    // Refs are mutable objects, hence they can be updated explicitly and
+    // can hold values other than a reference to a React element.
     const snakeCellsHookRef=useRef(snakeCells);
     const _setSnakeCells=newSnakeCells=>{
         snakeCellsHookRef.current=newSnakeCells;
@@ -126,6 +130,8 @@ const Board=()=>{
 
     const growSnake= newSnakeCells => {
         const growthNodeCoords=getGrowthNodeCoords(snake.tail,direction);
+        //if snake's tail is already bordering with boundaries then growth is restricted
+        //since direction of growth will be ambigous
         if(isOutOfBounds(growthNodeCoords,board)){
             return;
         }
@@ -300,6 +306,8 @@ const Direction={
 
 const getNextNodeDirection=(node,currentDirection)=>{
     if(node.next===null)return currentDirection;
+    //since node value is an object with 3 values(row,col,cell)
+    //thereby destructuring it to obtain row and col
     const {row:currentRow,col:currentCol}=node.value;
     const {row:nextRow,col:nextCol}=node.next.value;
     if(nextRow===currentRow && nextCol===currentCol+1){
@@ -346,6 +354,9 @@ const getNextHeadCoordinates=(currentHeadCoordinates,direction)=>{
     }
 }
 const getGrowthNodeCoords=(snakeTail,currentDirection)=>{
+    //to obtain the current direction of movement of snake's tail based on it's neighbour node
+    //as there might be a case when snake's head is moving towards left and ate food but 
+    //snake's tail is moving from right to left
     const tailNextNodeDirection=getNextNodeDirection(snakeTail,currentDirection);
     // console.log(tailNextNodeDirection);
     const growthDirection=getOppostiteDirection(tailNextNodeDirection);
