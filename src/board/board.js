@@ -195,9 +195,9 @@ const Board=()=>{
         <>
             <Aside/>
             <div className="boardContainer" >
-                <div className="boardImg">
-                    <img width="770px" src={GreenBoard} alt="backBoard"/>
-                </div>
+                
+                <img width="770px" src={GreenBoard} alt="backBoard"/>
+                
                 <div className="board">
                 {board.map((row,rowInd)=>(
                     <div key={rowInd} className="row">

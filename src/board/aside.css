@@ -1,0 +1,63 @@
+.main {
+    position: absolute;
+      top: 40%;
+      left: 13%;
+      transform: translate(-50%, -50%);
+      font-family:Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .main-heading {
+    color: #777;
+    text-transform: uppercase;
+  }
+  
+  .main-heading-primary {
+    display: block;
+    font-size: 5.0rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: moveInLeft 1s ease-out;
+  }
+  
+  .main-heading-secondary {
+    font-family: sans-serif;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 5px;
+    color: rgb(187, 33, 72);
+    animation: moveInRight 1s ease-out;
+  }
+  
+  @keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    
+    80% {
+      transform: translateX(40px);
+    }
+    
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+  
+  @keyframes moveInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    
+    80% {
+      transform: translateX(-10px);
+    }
+    
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
