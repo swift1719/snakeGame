@@ -1,8 +1,37 @@
-.board{
+.scoreBoard{
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 200px;
+    color: brown;
+}
+
+.scoreBoard p{
+  font-size: 40px;
+  font-weight: 700;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: absolute; 
+  top: 50px; 
+  left: 0; 
+  width: 100%; 
+}
+.boardContainer{
+    display: inline-block;
+    position: relative;
+}
+.boardContainer .board{
+    top:0px;
+    position: absolute;
+    width: fit-content;
     outline: 2px solid rgb(134,154,189);
+    background-color: #282c34;
+    margin-left: 150px;
+    margin-right: 0px;
+    margin-top: 140px;
 }
 
 .row{
+    width: inherit;
     height: 40px;
 }
 .cell{

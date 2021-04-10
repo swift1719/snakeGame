@@ -12,7 +12,9 @@ import {
 } from '../utils/coordUtil';
 import {useInterval} from '../utils/intervalUtil';
 import './board.css';
-
+import Aside from './aside';
+import scoreBoardImg from '../assets/borderGolden.png'
+import GreenBoard from '../assets/borderLeaves.png'
 const BOARD_SIZE=13;
 const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
 
@@ -191,26 +193,39 @@ const Board=()=>{
     
     return(
         <>
-            <h1>Score: {score}</h1>
-            <div className="board">
-            {board.map((row,rowInd)=>(
-                <div key={rowInd} className="row">
-                {
-                    row.map((cellValue,cellInd)=>{
-                        const className=getCellClassName(
-                            cellValue,
-                            foodCell,
-                            foodShouldReverseDirection,
-                            snakeCells
-                        );
-                        return (
-                            <div key={cellInd} 
-                            className={className}></div>
-                        )
-                    })
-                }
+            <Aside/>
+            <div className="boardContainer" >
+                <div className="boardImg">
+                    <img width="770px" src={GreenBoard} alt="backBoard"/>
                 </div>
-            ))}
+                <div className="board">
+                {board.map((row,rowInd)=>(
+                    <div key={rowInd} className="row">
+                    {
+                        row.map((cellValue,cellInd)=>{
+                            const className=getCellClassName(
+                                cellValue,
+                                foodCell,
+                                foodShouldReverseDirection,
+                                snakeCells
+                            );
+                            return (
+                                <div key={cellInd} 
+                                className={className}></div>
+                            )
+                        })
+                    }
+                    </div>
+                ))}
+                </div>
+            </div>
+            <div className="scoreBoard">
+                <img width="320px" height="320px" src={scoreBoardImg} alt="scoreBoardLayout" />
+                <p>
+                    <span style={{textDecorationLine:"underline"}} >Score </span>
+                    <br/>
+                    <span style={{color:""}}><strong>{score}</strong></span>
+                </p>
             </div>
         </>
     )
