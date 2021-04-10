@@ -1,16 +1,8 @@
 .App{
   text-align: center;
   background-image: url('./assets/background.jpg');
-  min-height: 100vh;
   display: grid;
-  /* grid-template-rows: 90%; */
-  grid-template-areas: 'header header header'
-  						'aside boardContainer scoreBoardContainer';
-  
-  /* grid-template-columns: 100px auto 20%; */
-  /* flex-direction: column; */
-  /* align-items: flex-end; */
-  /* justify-content: center; */
+  grid-template-areas: 'aside boardContainer scoreBoardContainer';
   font-size: calc(10px+2vmin);
   color: white;
 }

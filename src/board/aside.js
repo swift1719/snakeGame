@@ -1,6 +1,5 @@
 import React from 'react';
 import './aside.css';
-// import 'animate.css';
 import snakeImg from '../assets/snake.png';
 const Aside = () => {
     return (
@@ -12,7 +11,6 @@ const Aside = () => {
                     <span className="main-heading-secondary">Catch the food!!!</span>
                 </h1>
             </div>
-            {/* <h1 class="animate__animated animate__bounce">An animated element</h1> */}
         </div>
     )
 }

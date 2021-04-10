@@ -1,7 +1,6 @@
 .scoreBoard{
     display: inline-block;
     position: relative;
-    margin-left: 20px;
     margin-top: 200px;
     color: brown;
 }
@@ -12,22 +11,25 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   position: absolute; 
   top: 50px; 
-  left: 0; 
+  /* left: 0;  */
+  /* right: 30px; */
   width: 100%; 
+  height: auto;
 }
 .boardContainer{
     display: inline-block;
     position: relative;
 }
+
 .boardContainer .board{
     top:0px;
     position: absolute;
     width: fit-content;
     outline: 2px solid rgb(134,154,189);
     background-color: #282c34;
-    margin-left: 150px;
-    margin-right: 0px;
-    margin-top: 140px;
+    margin-left: 148px;
+    margin-right: auto;
+    margin-top: 100px;
 }
 
 .row{

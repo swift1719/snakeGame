@@ -196,7 +196,7 @@ const Board=()=>{
             <Aside/>
             <div className="boardContainer" >
                 
-                <img width="770px" src={GreenBoard} alt="backBoard"/>
+                <img style={{marginTop:"-10px"}} height="728px" width="800px" src={GreenBoard} alt="backBoard"/>
                 
                 <div className="board">
                 {board.map((row,rowInd)=>(
