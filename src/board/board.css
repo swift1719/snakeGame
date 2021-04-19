@@ -25,11 +25,12 @@
     top:0px;
     position: absolute;
     width: fit-content;
-    outline: 2px solid rgb(134,154,189);
-    background-color: #282c34;
-    margin-left: 148px;
+    border-radius: 8px;
+    border: 8px solid rgb(153, 37, 37);
+    background-color: #282c34d3;
+    margin-left: 130px;
     margin-right: auto;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 .row{
@@ -39,16 +40,27 @@
 .cell{
     width: 40px;
     height: 40px;
-    outline: 1px solid rgb(134,154,189);
+    border: 1px dotted rgb(153, 141, 88);
     display:inline-block;
 }
 
 .cell-green{
-    background-color: green;
+    outline: none;
+    background-color:#78ca0dab;
 }
+
 .cell-red{
-    background-color: red;
+    /* background-color: tan; */
+    /* border-radius: 14px; */
+    background-image:url("../assets/apple.png");
+    /* height: 40px;
+    width: 40px; */
+    background-size: contain;
+    /* background-color: red; */
 }
 .cell-purple{
-    background-color: purple;
+    /* background-color: purple; */
+    background-image: url("../assets/frog.png");
+    background-size: contain;
+
 }

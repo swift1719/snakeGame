@@ -13,8 +13,10 @@ import {
 import {useInterval} from '../utils/intervalUtil';
 import './board.css';
 import Aside from './aside';
-import scoreBoardImg from '../assets/borderGolden.png'
-import GreenBoard from '../assets/borderLeaves.png'
+import scoreBoardImg from '../assets/borderGolden.png';
+import appleImg from '../assets/apple.png';
+import GreenBoard from '../assets/borderLeaves.png';
+import frogImg from '../assets/frog.png';
 const BOARD_SIZE=13;
 const PROBABILITY_OF_DIRECTION_REVERSAL_FOOD=0.3;
 
@@ -179,7 +181,11 @@ const Board=()=>{
         
         setFoodCell(nextFoodCell);
         setFoodShouldReverseDirection(nextFoodShouldReverseDirection);
-        setScore(score+1);
+        if(foodShouldReverseDirection){//if food is frog then score double
+            setScore(score+2);
+        }else{
+            setScore(score+1);
+        }
     }
 
     const handleGameOver=()=>{
@@ -224,7 +230,9 @@ const Board=()=>{
                 <p>
                     <span style={{textDecorationLine:"underline"}} >Score </span>
                     <br/>
-                    <span style={{color:""}}><strong>{score}</strong></span>
+                    <img width="100px" height="100px" style={{marginTop:"0px",marginLeft:"-100px"}} src={appleImg} alt="apple.png" />
+                    <span style={{position:"absolute",color:"red",marginTop:"30px",marginLeft:"0px"}}><strong>{score}</strong></span>
+                    <img width="100px" height="100px" style={{marginTop:"0px",marginLeft:"30px",marginRight:"-100px"}} src={frogImg} alt="frog.png" />
                 </p>
             </div>
         </>
